@@ -1,0 +1,48 @@
+2024-05-03 12:50:33,925 (natcap.invest.utils) utils.prepare_workspace(161) Level 100 Writing log messages to [/Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/carbon/InVEST-natcap.invest.carbon-log-2024-05-03--12_50_33.txt]
+2024-05-03 12:50:33,926 (__main__) cli.main(458) Level 100 Starting model with parameters: 
+Arguments for InVEST natcap.invest.carbon 3.13.0:
+calc_sequestration        False
+carbon_pools_path         /Users/mbraaksma/Files/apec8601_project/apec8601_project/base_data/invest/carbon/seals_biophysical_table.csv
+discount_rate             
+do_redd                   False
+do_valuation              False
+lulc_cur_path             /Users/mbraaksma/Files/seals/projects/ghana_policy/reproj/lulc_esa_seals7_ssp5_rcp85_luh2-message_bau_2075_clipped_reproj.tif
+lulc_cur_year             
+lulc_fut_path             
+lulc_fut_year             
+lulc_redd_path            
+n_workers                 -1
+price_per_metric_ton_of_c 
+rate_change               
+results_suffix            
+workspace_dir             /Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/carbon
+
+2024-05-03 12:50:33,926 (natcap.invest.carbon) carbon.execute(363) INFO Building file registry
+2024-05-03 12:50:33,959 (natcap.invest.carbon) carbon.execute(409) INFO Map all carbon pools to carbon storage rasters.
+2024-05-03 12:50:33,959 (natcap.invest.carbon) carbon.execute(422) INFO Mapping carbon from 'lulc_cur_path' to 'c_above_cur' scenario.
+2024-05-03 12:50:33,968 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 12:50:33,969 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-1 (stats_worker), started daemon 13174063104)>
+2024-05-03 12:50:34,081 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 12:50:34,081 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 12:50:34,137 (natcap.invest.carbon) carbon.execute(422) INFO Mapping carbon from 'lulc_cur_path' to 'c_below_cur' scenario.
+2024-05-03 12:50:34,144 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 12:50:34,144 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-2 (stats_worker), started daemon 13174063104)>
+2024-05-03 12:50:34,200 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 12:50:34,200 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 12:50:34,256 (natcap.invest.carbon) carbon.execute(422) INFO Mapping carbon from 'lulc_cur_path' to 'c_soil_cur' scenario.
+2024-05-03 12:50:34,262 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 12:50:34,263 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-3 (stats_worker), started daemon 13174063104)>
+2024-05-03 12:50:34,318 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 12:50:34,318 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 12:50:34,372 (natcap.invest.carbon) carbon.execute(422) INFO Mapping carbon from 'lulc_cur_path' to 'c_dead_cur' scenario.
+2024-05-03 12:50:34,379 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 12:50:34,379 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-4 (stats_worker), started daemon 13174063104)>
+2024-05-03 12:50:34,435 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 12:50:34,435 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 12:50:34,490 (natcap.invest.carbon) carbon.execute(436) INFO Calculate carbon storage for 'tot_c_cur'
+2024-05-03 12:50:34,498 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 12:50:34,498 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-5 (stats_worker), started daemon 13174063104)>
+2024-05-03 12:50:34,605 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 12:50:34,605 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 12:50:34,688 (natcap.invest.utils) utils.prepare_workspace(169) INFO Elapsed time: 0.76s
+2024-05-03 12:50:34,688 (natcap.invest.utils) utils.prepare_workspace(172) INFO Execution finished

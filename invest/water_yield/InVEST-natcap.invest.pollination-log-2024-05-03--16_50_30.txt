@@ -1,0 +1,233 @@
+2024-05-03 16:50:30,806 (natcap.invest.utils) utils.prepare_workspace(161) Level 100 Writing log messages to [/Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/InVEST-natcap.invest.pollination-log-2024-05-03--16_50_30.txt]
+2024-05-03 16:50:30,806 (__main__) cli.main(458) Level 100 Starting model with parameters: 
+Arguments for InVEST natcap.invest.pollination 3.13.0:
+farm_vector_path                 
+guild_table_path                 /Users/mbraaksma/Files/apec8601_project/apec8601_project/base_data/invest/pollination/guild_table.csv
+landcover_biophysical_table_path /Users/mbraaksma/Files/apec8601_project/apec8601_project/base_data/invest/pollination/landcover_biophysical_table.csv
+landcover_raster_path            /Users/mbraaksma/Files/seals/projects/ghana_policy_forest/intermediate/stitched_lulc_simplified_scenarios/reprojected/lulc_esa_seals7_ssp5_rcp85_luh2-message_bau_2040_clipped.tif
+n_workers                        -1
+results_suffix                   
+workspace_dir                    /Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield
+
+2024-05-03 16:50:30,814 (natcap.invest.pollination) pollination._parse_scenario_variables(1186) INFO Checking to make sure guild table has all expected headers
+2024-05-03 16:50:30,851 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:30,851 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-1 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:30,923 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:30,923 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:30,987 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:30,987 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-2 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,043 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,043 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,105 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,105 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-3 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,165 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,165 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,227 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,227 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-4 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,286 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,286 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,348 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,348 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-5 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,401 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,401 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,462 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,462 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-6 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,522 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,522 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,586 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,586 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-7 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,641 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,641 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,703 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,704 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-8 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,757 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,758 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,818 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,818 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-9 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,847 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,847 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,908 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,908 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-10 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:31,936 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:31,936 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:31,990 (taskgraph.Task) Task.add_task(653) INFO A task was created that had an identical args signature sans target paths, but a different target_path_list of the same length. To avoid recomputation, dynamically adding previous Task (calculate_foraged_flowers_apis_spring (8)) as a dependent task to this one (calculate_foraged_flowers_apis2_spring (10)).
+2024-05-03 16:50:31,991 (taskgraph.Task) Task.is_precalculated(1252) INFO not precalculated (calculate_foraged_flowers_apis2_spring (10)), Task hash exists, but there are these mismatches: Recorded path not in target path list /Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/intermediate_outputs/foraged_flowers_index_apis_spring.tif
+2024-05-03 16:50:31,995 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:31,995 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-11 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,023 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,023 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,080 (taskgraph.Task) Task.add_task(653) INFO A task was created that had an identical args signature sans target paths, but a different target_path_list of the same length. To avoid recomputation, dynamically adding previous Task (calculate_foraged_flowers_apis_summer (9)) as a dependent task to this one (calculate_foraged_flowers_apis2_summer (10)).
+2024-05-03 16:50:32,080 (taskgraph.Task) Task.is_precalculated(1252) INFO not precalculated (calculate_foraged_flowers_apis2_summer (10)), Task hash exists, but there are these mismatches: Recorded path not in target path list /Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/intermediate_outputs/foraged_flowers_index_apis_summer.tif
+2024-05-03 16:50:32,084 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:32,084 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-12 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,111 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,111 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,168 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:32,169 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-13 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,196 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,196 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,255 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:32,255 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-14 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,283 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,283 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,338 (taskgraph.Task) Task.add_task(653) INFO A task was created that had an identical args signature sans target paths, but a different target_path_list of the same length. To avoid recomputation, dynamically adding previous Task (calculate_foraged_flowers_bombus_spring (10)) as a dependent task to this one (calculate_foraged_flowers_bombus2_spring (12)).
+2024-05-03 16:50:32,338 (taskgraph.Task) Task.is_precalculated(1252) INFO not precalculated (calculate_foraged_flowers_bombus2_spring (12)), Task hash exists, but there are these mismatches: Recorded path not in target path list /Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/intermediate_outputs/foraged_flowers_index_bombus_spring.tif
+2024-05-03 16:50:32,342 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:32,342 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-15 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,370 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,370 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,425 (taskgraph.Task) Task.add_task(653) INFO A task was created that had an identical args signature sans target paths, but a different target_path_list of the same length. To avoid recomputation, dynamically adding previous Task (calculate_foraged_flowers_bombus_summer (11)) as a dependent task to this one (calculate_foraged_flowers_bombus2_summer (12)).
+2024-05-03 16:50:32,425 (taskgraph.Task) Task.is_precalculated(1252) INFO not precalculated (calculate_foraged_flowers_bombus2_summer (12)), Task hash exists, but there are these mismatches: Recorded path not in target path list /Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/intermediate_outputs/foraged_flowers_index_bombus_summer.tif
+2024-05-03 16:50:32,429 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:32,429 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-16 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,457 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,457 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,517 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:32,517 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-17 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:32,571 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:32,571 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:32,639 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:32,640 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:32,822 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on floral_resources_apis.tif
+2024-05-03 16:50:32,990 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:33,197 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on floral_resources_apis.tif
+2024-05-03 16:50:33,379 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:33,379 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-20 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:33,467 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:33,467 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:33,586 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:33,587 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:33,780 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on convolve_ps_apis.tif
+2024-05-03 16:50:33,958 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:34,161 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on convolve_ps_apis.tif
+2024-05-03 16:50:34,354 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:34,354 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-23 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:34,492 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:34,492 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:34,614 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:34,614 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-24 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:34,753 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:34,753 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:34,864 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:34,865 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-25 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:34,918 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:34,918 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:34,983 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:34,984 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:35,158 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on floral_resources_apis2.tif
+2024-05-03 16:50:35,338 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:35,536 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on floral_resources_apis2.tif
+2024-05-03 16:50:35,769 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:35,769 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-28 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:35,857 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:35,857 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:35,968 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:35,969 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:36,156 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on convolve_ps_apis2.tif
+2024-05-03 16:50:36,331 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:36,526 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on convolve_ps_apis2.tif
+2024-05-03 16:50:36,760 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:36,761 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-31 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:36,907 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:36,908 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:37,021 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:37,021 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-32 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:37,168 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:37,168 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:37,278 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:37,278 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-33 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:37,332 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:37,332 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:37,398 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:37,398 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:37,586 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on floral_resources_bombus.tif
+2024-05-03 16:50:37,762 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:37,969 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on floral_resources_bombus.tif
+2024-05-03 16:50:38,170 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:38,171 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-36 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:38,253 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:38,253 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:38,369 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:38,370 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:38,572 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on convolve_ps_bombus.tif
+2024-05-03 16:50:38,750 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:38,955 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on convolve_ps_bombus.tif
+2024-05-03 16:50:39,156 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:39,157 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-39 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:39,296 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:39,296 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:39,414 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:39,415 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-40 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:39,553 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:39,553 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:39,667 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:39,668 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-41 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:39,722 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:39,722 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:39,779 (taskgraph.Task) Task.add_task(641) WARNING A duplicate task was submitted: Task object 10419590656:
+
+{'exception_object': None,
+ 'ignore_directories': True,
+ 'ignore_path_list': [],
+ 'priority': 0,
+ 'self._reexecution_info': {'args_clean': [2.622710758727202,
+                                           'in_target_path_list'],
+                            'func_name': 'exponential_decay_kernel_raster',
+                            'kwargs_clean': {},
+                            'source_code_hash': 'da39a3ee5e6b4b0d3255bfef95601890afd80709'},
+ 'self._result': None,
+ 'target_path_list': ['/Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/intermediate_outputs/kernel_2.622711.tif'],
+ 'task_id_hash': '258b557b573bc926615379c03d28ca1ae7e52c8f',
+ 'task_name': 'decay_kernel_raster_2.622710758727202 (34)',
+ 'task_reexecution_hash': None} original: Task object 10419591664:
+
+{'exception_object': None,
+ 'ignore_directories': True,
+ 'ignore_path_list': [],
+ 'priority': 0,
+ 'self._reexecution_info': {'args_clean': [2.622710758727202,
+                                           'in_target_path_list'],
+                            'file_stat_list': [],
+                            'func_name': 'exponential_decay_kernel_raster',
+                            'kwargs_clean': {},
+                            'other_arguments': [[2.622710758727202,
+                                                 '/in_target_path_list'],
+                                                {}],
+                            'source_code_hash': 'da39a3ee5e6b4b0d3255bfef95601890afd80709'},
+ 'self._result': None,
+ 'target_path_list': ['/Users/mbraaksma/Files/apec8601_project/apec8601_project/invest/water_yield/intermediate_outputs/kernel_2.622711.tif'],
+ 'task_id_hash': '258b557b573bc926615379c03d28ca1ae7e52c8f',
+ 'task_name': 'decay_kernel_raster_2.622710758727202 (20)',
+ 'task_reexecution_hash': '6a2257ec125c80f8c8a13f16883c3daa68950a1c'}
+2024-05-03 16:50:39,788 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:39,789 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:39,965 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on floral_resources_bombus2.tif
+2024-05-03 16:50:40,141 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:40,343 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on floral_resources_bombus2.tif
+2024-05-03 16:50:40,582 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:40,583 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-44 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:40,671 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:40,671 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:40,786 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(2983) INFO starting convolve
+2024-05-03 16:50:40,787 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3031) INFO 60 sent to workers, wait for worker results
+2024-05-03 16:50:40,980 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3095) INFO convolution worker 100.0% complete on convolve_ps_bombus2.tif
+2024-05-03 16:50:41,163 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3103) INFO need to normalize result so nodata values are not included
+2024-05-03 16:50:41,364 (pygeoprocessing.geoprocessing) geoprocessing.convolve_2d(3139) INFO convolution nodata normalize 100.0% complete on convolve_ps_bombus2.tif
+2024-05-03 16:50:41,610 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:41,610 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-47 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:41,757 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:41,758 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:41,881 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:41,881 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-48 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:42,037 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:42,037 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:42,159 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:42,159 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-49 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:42,311 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:42,311 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:42,427 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(470) INFO starting stats_worker
+2024-05-03 16:50:42,427 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(476) INFO started stats_worker <Thread(Thread-50 (stats_worker), started daemon 13095927808)>
+2024-05-03 16:50:42,580 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(555) INFO 100.0% complete
+2024-05-03 16:50:42,580 (pygeoprocessing.geoprocessing) geoprocessing.raster_calculator(558) INFO Waiting for raster stats worker result.
+2024-05-03 16:50:42,689 (natcap.invest.utils) utils.prepare_workspace(169) INFO Elapsed time: 11.88s
+2024-05-03 16:50:42,689 (natcap.invest.utils) utils.prepare_workspace(172) INFO Execution finished
