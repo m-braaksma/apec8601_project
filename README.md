@@ -7,23 +7,15 @@
 
 ### Baseline
 
+![]()
 
 ### Scenarios
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
-
+![](plots/ghana_standard.png)
 
 ### Scenarios under Policy
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
+![](plots/ghana_policy_forest.png)
 
 ### Narrative Description
 
