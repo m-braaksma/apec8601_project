@@ -32,48 +32,25 @@
 
 ### Carbon Storage
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
+![](plots/carbon.png)
 
 
 ### Annual Water Yield
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
+![](plots/annual_water_yield.png)
 
 
 ### Pollination
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
-
+![](plots/pollination.png)
 
 ### Sediment Retention
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
-
+![](plots/sediment_delivery.png)
 
 ### Nutrient Retention
 
-|      | ssp1_rcp26 | ssp2_rcp45 | ssp5_rcp85 |
-| ---- | ---------- | ---------- | ---------- |
-| 2030 | link       | link       | link       |
-| 2035 | link       | link       | link       |
-| 2040 | link       | link       | link       |
-
+![](plots/nutrient_delivery.png)
 
 ### Narrative Description
 
@@ -84,4 +61,3 @@
 ### Other Projects
 
 ### More from APEC 8601
-
