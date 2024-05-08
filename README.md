@@ -72,7 +72,7 @@ Since the policy is effective at preventing primary areas of deforestation in SS
 
 ## Executive Summary
 
-Summary
+Ghana has the opportunity to foster sustainable development without sacrificing critical natural resources. While the future global climate is uncontrollable at a country level, policies can be implemented to ensure that development does not degrade the environment. Even in the era of 'Fossil-fueled Development,' preventing cropland expansion into forest land ensures that ecosystem system provision is guaranteed for future generations. Preventing development in the most environmentally valuable areas enables "green economic development" to succeed. 
 
 ## Technical Details
 
@@ -114,5 +114,5 @@ In addition to this project, I developed other code for APEC 8601: Natural Resou
 
 - [Problem Set 1](problem_sets/apec8601_mbraak_ps1.pdf)
 - [Problem Set 2](problem_sets/problem_set_2_v2_mbraak.ipynb)
-- [Problem Set 3](problem_sets/apec8601_mbraak_ps3.html)
-- [Problem Set 4](problem_sets/apec8601_mbraak_ps4.html)
+- [Problem Set 3](problem_sets/apec8601_mbraak_ps3.pdf)
+- [Problem Set 4](problem_sets/apec8601_mbraak_ps4.pdf)

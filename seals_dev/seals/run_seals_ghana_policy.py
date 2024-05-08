@@ -59,7 +59,7 @@ if __name__ == '__main__':
     # Some of the other test files use different scenario definition csvs 
     # to illustrate the technique. If you point to one of these 
     # (or any one CSV that already exists), SEALS will not generate a new one.    
-    p.scenario_definitions_path = os.path.join(p.input_dir, 'scenario_defininitions.csv')
+    p.scenario_definitions_path = os.path.join(p.input_dir, 'scenario_defininitions_policy.csv')
 
     # If the scenarios csv doesn't exist, generate it and put it in the input_dir 
     if not hb.path_exists(p.scenario_definitions_path):

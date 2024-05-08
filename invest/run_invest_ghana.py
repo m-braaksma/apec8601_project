@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO, handlers=[handler])
 
 args_carbon = {
     'calc_sequestration': False,
-    'carbon_pools_path': '/Users/mbraaksma/Files/apec8601_project/apec8601_project/base_data/invest/carbon/seals_biophysical_table.csv',
+    'carbon_pools_path': '/Users/mbraaksma/Files/base_data/global_invest/carbon/seals_biophysical_table.csv',
     'discount_rate': '',
     'do_redd': False,
     'do_valuation': False,
@@ -48,8 +48,8 @@ args_carbon = {
 
 pollination_args = {
     'farm_vector_path': '',
-    'guild_table_path': '/Users/mbraaksma/Files/apec8601_project/apec8601_project/base_data/invest/pollination/guild_table.csv',
-    'landcover_biophysical_table_path': '/Users/mbraaksma/Files/apec8601_project/apec8601_project/base_data/invest/pollination/landcover_biophysical_table.csv',
+    'guild_table_path': '/Users/mbraaksma/Files/base_data/global_invest/pollination/guild_table.csv',
+    'landcover_biophysical_table_path': '/Users/mbraaksma/Files/base_data/global_invest/pollination/landcover_biophysical_table.csv',
     'landcover_raster_path': '',
     'n_workers': '-1',
     'results_suffix': '',

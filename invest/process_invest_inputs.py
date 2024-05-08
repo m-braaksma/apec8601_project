@@ -1,5 +1,3 @@
-
-
 import geopandas as gpd 
 import numpy as np
 from osgeo import gdal 
@@ -19,14 +17,10 @@ output_raster="/Users/mbraaksma/Files/base_data/lulc/esa/lulc_esa_2017_ghana.tif
 gdal.Warp(output_raster, input_raster, dstSRS='ESRI:54030',
             cutlineDSName=mask_vector_path, cropToCutline=True, dstNodata=np.nan)
 
-
-from osgeo import gdal 
-
 # REPROJ SEALS
 scenario_list = ['ssp1_rcp26', 'ssp2_rcp45','ssp5_rcp85']
 year_list = [2030, 2035, 2040]
 seals_lulc_path = '/Users/mbraaksma/Files/seals/projects/ghana_policy_forest/intermediate/stitched_lulc_simplified_scenarios/'
-
 for scenario in scenario_list:
     for year in year_list:
         input_raster = seals_lulc_path + f'lulc_esa_seals7_{scenario}_luh2-message_bau_{year}_clipped.tif'
@@ -86,31 +80,4 @@ gdal.Warp('/Users/mbraaksma/Files/base_data/global_invest/sediment_delivery/RUSL
           '/Users/mbraaksma/Files/base_data/global_invest/sediment_delivery/Global Soil Erodibility/Data_25km/RUSLE_KFactor_v1.1_25km.tif', 
           dstSRS='ESRI:54030',
           cutlineDSName=mask_vector_path, cropToCutline=True, dstNodata=np.nan)
-
-
-
-
-
-# import pygeoprocessing as pygeo
-
-# input_raster = "/Users/mbraaksma/Files/base_data/lulc/esa/lulc_esa_2017.tif" 
-# mask_vector_path = "/Users/mbraaksma/Files/base_data/pyramids/countries_iso3_ghana.gpkg" 
-# output_raster="/Users/mbraaksma/Files/base_data/lulc/esa/lulc_esa_2017_ghana.tif" 
-
-# gdal.Warp(output_raster, input_raster, dstSRS='ESRI:54030')
-# pygeo.warp_raster(base_raster_path=input_raster,
-#                     target_pixel_size=pygeo.get_raster_info(input_raster)['pixel_size'],
-#                     target_raster_path=output_raster, 
-#                     resample_method='near', 
-#                     target_bb=pygeo.get_vector_info(mask_vector_path)['bounding_box'], 
-#                     base_projection_wkt=None, 
-#                     target_projection_wkt='ESRI:54030', 
-#                     n_threads=None, 
-#                     vector_mask_options={'mask_vector_path': mask_vector_path}, 
-#                     gdal_warp_options=None, 
-#                     working_dir=None, 
-#                     use_overview_level=-1, 
-#                     raster_driver_creation_tuple=('GTIFF', ('TILED=YES', 'BIGTIFF=YES', 'COMPRESS=LZW', 'BLOCKXSIZE=256', 'BLOCKYSIZE=256')), 
-#                     osr_axis_mapping_strategy=0)
-
 
