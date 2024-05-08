@@ -114,5 +114,5 @@ In addition to this project, I developed other code for APEC 8601: Natural Resou
 
 - [Problem Set 1](problem_sets/apec8601_mbraak_ps1.pdf): Dynamic optimization
 - [Problem Set 2](problem_sets/problem_set_2_v2_mbraak.ipynb): DICE and MAGICC model
-- [Problem Set 3](problem_sets/apec8601_mbraak_ps3.pdf): Dynamic optimization
+- [Problem Set 3](problem_sets/apec8601_mbraak_ps3.pdf): Dynamic programming
 - [Problem Set 4](problem_sets/apec8601_mbraak_ps4.pdf): InVEST Scenic Quality model
