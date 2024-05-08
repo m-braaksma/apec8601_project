@@ -54,11 +54,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="scenarios-ssp1-rcp2.6-ssp2-rcp4.5-ssp5-rcp8.5" class="level4">
 <h4 class="anchored" data-anchor-id="scenarios-ssp1-rcp2.6-ssp2-rcp4.5-ssp5-rcp8.5">Scenarios: SSP1-RCP2.6, SSP2-RCP4.5, SSP5-RCP8.5</h4>
 </section>
-<section id="policy" class="level4">
-<h4 class="anchored" data-anchor-id="policy">Policy:</h4>
-</section>
-<section id="executive-summary" class="level3">
-<h3 class="anchored" data-anchor-id="executive-summary">Executive Summary</h3>
+<section id="policy-prevent-expansion-of-cropland-into-forest" class="level4">
+<h4 class="anchored" data-anchor-id="policy-prevent-expansion-of-cropland-into-forest">Policy: Prevent expansion of cropland into forest</h4>
 </section>
 <section id="seals" class="level2">
 <h2 class="anchored" data-anchor-id="seals">SEALS</h2>
@@ -83,14 +80,19 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 <p><img src="plots/ghana_standard.png" class="img-fluid"></p>
+<section id="description" class="level5">
+<h5 class="anchored" data-anchor-id="description">Description</h5>
+<p>From the plots, we can see how different Ghana’s landscape may look depending on the given scenario. In all cases, the urban area appears to expand, reflecting the country’s place as a developing country. However, the largest difference is the decrease in forest and grassland, with large portions remaining in the southwest in SSP1-RCP2.6 and SSP2-RCP4.5, while it has been virtually completely replaced by cropland in SSP5-RCP8.5.</p>
+</section>
 </section>
 <section id="scenarios-under-policy" class="level3">
 <h3 class="anchored" data-anchor-id="scenarios-under-policy">Scenarios under Policy</h3>
 <p>Suppose Ghana, in an effort to end deforestation, implements a policy that prevents any cropland expansion into forest land.</p>
 <p><img src="plots/ghana_policy_forest.png" class="img-fluid"></p>
+<section id="description-1" class="level5">
+<h5 class="anchored" data-anchor-id="description-1">Description</h5>
+<p>Now, we can observe how a strict anti-deforestation policy may change land-use trends under the various scenarios. In stark contrast to the previous maps, SSP5-RCP8.5 no longer exhibits a large decrease in forest. Grassland still appears to encroach into the forest in the central part of the country, but to a much lesser degree. The policy appears to have a much smaller impact in SSP1-RCP2.6 and SSP2-RCP4.5, where deforestation is driving much less of the land-use change.</p>
 </section>
-<section id="narrative-description" class="level3">
-<h3 class="anchored" data-anchor-id="narrative-description">Narrative Description</h3>
 </section>
 </section>
 <section id="invest" class="level2">
@@ -115,15 +117,48 @@ ul.task-list li input[type="checkbox"] {
 <section id="nutrient-retention" class="level3">
 <h3 class="anchored" data-anchor-id="nutrient-retention">Nutrient Retention</h3>
 <p><img src="plots/nutrient_delivery.png" class="img-fluid"></p>
+<section id="description-2" class="level5">
+<h5 class="anchored" data-anchor-id="description-2">Description</h5>
+<p>Since the policy is effective at preventing primary areas of deforestation in SSP5-RCP8.5, the ecosystem service provision is relatively consistent across the scenarios. There may be small areas of gains, but at the country level, it appears that preventing cropland expansion into forested areas is key to maintaining a consistent level of ecosystem service provision, even under more dire scenarios. The provision is also fairly consistent across the ecosystem services, which indicates that forests are a key driver of the value of ecosystem services.</p>
 </section>
-<section id="narrative-description-1" class="level3">
-<h3 class="anchored" data-anchor-id="narrative-description-1">Narrative Description</h3>
 </section>
+</section>
+<section id="executive-summary" class="level2">
+<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+<p>Summary</p>
 </section>
 <section id="technical-details" class="level2">
 <h2 class="anchored" data-anchor-id="technical-details">Technical Details</h2>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>This project requires a proper installation of the earth_economy_devstack and associated project directory and data directory. Visit the <a href="https://github.com/jandrewjohnson/seals">SEALS repository</a> for more information.</p>
+</section>
+<section id="basic-outline" class="level3">
+<h3 class="anchored" data-anchor-id="basic-outline">Basic Outline</h3>
+<ol type="1">
+<li><p>Baseline SEALS</p>
+<p>For a new standard SEALS run, several modifications must be made. <code>scenario_definitions.csv</code> must be updated to reflect the desired years, AOI (iso3 country code), SSP-RCP scenarios (<a href="https://luh.umd.edu/data.shtml">Land Use Harmonization data</a>). Create a new project folder and change <code>project_name = 'country_standard'</code> in <code>run_test_standard.py</code>.</p>
+<ul>
+<li><code>run_seals_ghana_standard.py</code></li>
+</ul></li>
+<li><p>Policy SEALS</p>
+<p>To run SEALS with a new policy applied, <code>default_global_coefficients.csv</code> must be updated to reflect how the policy will impact land use change. For example, to prevent cropland expansion into forest, change the multiplicative coefficient <code>forest_constraint=0</code> for <code>cropland</code>. It is also possible to add a new raster layer to effect land use change.</p>
+<ul>
+<li><code>run_seals_ghana_policy.py</code></li>
+</ul></li>
+<li><p>InVEST models</p>
+<p>The SEALS LULC maps can be used as the primary input to model ecosystem services using InVEST. In addition to LULC data, the models require other global input data for each process based model. The input data may need to processed before running InVEST, including reprojecting and clipping.</p>
+<ul>
+<li><code>process_invest_inputs.py</code></li>
+<li><code>run_invest_ghana_policy.py</code></li>
+</ul></li>
+<li><p>Visualize</p>
+<p>After running SEALS and InVEST, the maps may be visualized to explore the results.</p>
+<ul>
+<li><code>seals_plot.py</code></li>
+<li><code>invest_plot.py</code></li>
+</ul></li>
+</ol>
 </section>
 <section id="other-projects" class="level3">
 <h3 class="anchored" data-anchor-id="other-projects">Other Projects</h3>
