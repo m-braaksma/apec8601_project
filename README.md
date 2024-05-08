@@ -112,10 +112,7 @@ This project requires a proper installation of the earth_economy_devstack and as
 
 In addition to this project, I developed other code for APEC 8601: Natural Resource Economics. 
 
-- [Problem Set 1](problem_sets/apec8601_mbraak_ps1.html)
+- [Problem Set 1](problem_sets/apec8601_mbraak_ps1.pdf)
 - [Problem Set 2](problem_sets/problem_set_2_v2_mbraak.ipynb)
 - [Problem Set 3](problem_sets/apec8601_mbraak_ps3.html)
 - [Problem Set 4](problem_sets/apec8601_mbraak_ps4.html)
-
-
-### More from APEC 8601
