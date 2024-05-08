@@ -1,0 +1,313 @@
+---
+title: "APEC 8601: Natural Resource Economics"
+subtitle: "Problem Set 3"
+author: 'Matt Braaksma'
+toc: true
+format: 
+    html:
+        theme: sandstone
+        html-math-method: katex
+        embed-resources: true
+        code-fold: true
+    pdf:  
+        documentclass: article
+        papersize: letter
+number-sections: true
+---
+
+## Conrad and Clark 2.10.8
+
+The island economy of Abalonia is based on the harvest of a single
+resource by native divers. The island chief is concerned about the resource stock left to unborn generations and has solicited your advice in resource management. After discussions with the chief, as well as some biological research, you determine the following:
+
+$$
+\begin{aligned}
+    U(Y_t) = Y_t^{0.75} &\Longrightarrow \text{utility of yield } Y_t \\
+    \dot{X} = X_t - 0.001 X_t^2 - Y_t &\Longrightarrow \text{equation of motion} \\
+    \delta = 0.10 &\Longrightarrow \text{the tribal discount rate}
+\end{aligned}
+$$
+
+a) What is the (continuous-time) current value Hamiltonian? 
+
+::: {.callout-tip collapse="true"}
+## Answer
+Current value Hamiltonian:
+$$
+\tilde{H} = Y_t^{0.75} + \mu_t [ X_t -0.001 X_t^2 - Y_t ]
+$$
+:::
+
+b) What are the first order necessary conditions for a maximum. Solve for the steady state optimum $(X, Y, \mu)$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Necessary conditions for an optimal solution:
+$$
+\begin{aligned}
+    \frac{\partial \tilde{H}}{\partial Y_t} &= 0 	\\
+    &\Longrightarrow 0.75 Y_t^{-0.25} - \mu_t = 0 \\
+    & \qquad 0.75 Y_t^{-0.25} = \mu_t \\
+    \frac{\partial \tilde{H}}{\partial X_t} &= - \dot{\mu}_t + \delta \mu_t	\\
+    & \Longrightarrow \mu_t [1 - 0.002 X_t]= - \dot{\mu}_t + 0.1 \mu_t \\
+    & \qquad \dot{\mu}_t = \mu_t [0.002 X_t - 0.9] \\
+    \frac{\partial \tilde{H}}{\partial \mu} &= \dot{X}_t \\
+    &\Longrightarrow X_t -0.001 X_t^2 - Y_t = \dot{X}_t
+\end{aligned}
+$$
+
+At the steady state, $\dot{\mu}_t=0$, so from the second condition:
+
+$$
+\begin{aligned}
+    \dot{\mu}_t &= \mu_t [0.002 X_t - 0.9] \\
+    0 &= \mu_t [0.002 X_t - 0.9] \\
+    0.002 X_t &= 0.9 \\
+    X_t^* &= 450
+\end{aligned}
+$$
+
+Then, from the third condition, $Y_t = 247.5$ and, from the first condition, $\mu_t = 0.189$. 
+::: 
+
+c) Plot the $\dot{X} = 0$ isocline. Locate the point defining the optimal stock and yield. What is the slope of the growth function at the optimal stock? Interpret your results.
+
+::: {.callout-tip collapse="true"}
+## Answer
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pylab as plt
+import seaborn as sbn
+from scipy.optimize import fmin
+```
+
+```{python}
+X = np.arange(0, 10000)
+growth_fn = X - 0.001 * (X)**2
+x_msy = 500
+y_msy = 250
+x_opt = 450
+y_opt = 247.5
+
+# plot yield as a function of stocks
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+lw = 1
+plt.plot(growth_fn,lw=lw, c="#348ABD")
+plt.plot((0, 1000), (y_msy, y_msy), 'k--')
+plt.plot((0, 1000), (0+200, y_msy+55), 'k--')
+plt.scatter(x_opt, y_opt, color='red', label='Optimal point')
+plt.scatter(x_msy, y_msy, color='red', label='MSY point')
+plt.annotate(f'Optimal Stock: {x_opt}\nOptimal Yield: {y_opt}\n$Slope = \delta = 0.1$ ', xy=(x_opt+5, y_opt-5), xytext=(x_opt-200, y_opt-95),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.annotate(f'Stock at $\\dot{{X}}$ = 0: {x_msy}\nYield at $\\dot{{X}}$ = 0: {y_msy}', xy=(x_msy+5, y_msy-5), xytext=(x_msy+80, y_msy-140),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.xlabel("Stock $X_t$")
+plt.ylabel("Yield $Y_t$")
+plt.title("The Stock Yield Curve")
+plt.xlim(0,1000)
+plt.ylim(0,300)
+plt.grid()
+```
+::: 
+
+
+## Lake Problem
+
+Consider a lake that is recharged at some exogenous natural rate $(G)$ that is not stock dependent. That is, $G$ equals some constant rate of flow into the lake. Let $X_t$ be the stock of water in the lake at time $t$. The lake is valued for the water that can be pumped from it and for its amenity value. Let the net benefits function be given by $U(Y_t , X_t)$, where $Y_t$ is the water pumped from the lake at time $t$ and the amenity value at time $t$ depends on the stock level. Assume that $U_y, U_x > 0$, $U_{yy}, U_{xx} < 0$. Assume that time is continuous and let the discount rate be $\delta$.
+
+a) Write out the dynamic maximization problem if the goal is to maximize the present value of benefits from the resource.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Optimal harvesting problem:
+$$
+\begin{aligned}
+    V(X_0) &= max \int_{0}^{\infty} U(Y_t,X_t) e^{-\delta t} dt \\
+    & \text{subject to} \\
+    & \dot{X}_t = G - Y_t \\
+    & Y_t \ge 0; X_t \ge 0; X_0 \ge 0
+\end{aligned}
+$$
+:::
+
+b) Write down the current value Hamiltonian for this problem.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Current value Hamiltonian:
+$$
+\tilde{H} = U(Y_t, X_t) + \mu_t (G - Y_t)
+$$
+:::
+
+c) Find the equations of motion in terms of $\mu$ and $X$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Equations of motion:
+$$
+\begin{aligned}
+    \frac{\partial \tilde{H}}{\partial Y_t} &= 0 	\\
+    &\Longrightarrow U_Y - \mu_t = 0 \\
+    \frac{\partial \tilde{H}}{\partial X_t} &= - \dot{\mu}_t + \delta \mu_t	\\
+    & \Longrightarrow U_X = - \dot{\mu}_t + \delta \mu_t \\
+    & \qquad \dot{\mu}_t = \delta \mu_t  - U_X \\
+    \frac{\partial \tilde{H}}{\partial \mu} &= \dot{X}_t \\
+    &\Longrightarrow G - Y_t = \dot{X}_t
+\end{aligned}
+$$
+:::
+
+d.) Find sufficient conditions for the necessary conditions found above for an optimal path.
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+Differentiate the first condition with respect to $t$ and substitute out $\dot{X}_t, \dot{\mu}_t, \mu_t$:
+$$
+\begin{aligned}
+    U_{YY} \dot{Y}_t - U_{YX} \dot{X}_t &= \dot{\mu}_t \\
+    U_{YY} \dot{Y}_t - U_{YX} \dot{X}_t &= \delta \mu_t  - U_X \\
+    U_{YY} \dot{Y}_t - U_{YX} (G - Y_t) &= \delta \mu_t  - U_X \\
+    U_{YY} \dot{Y}_t - U_{YX} (G - Y_t) &= \delta U_Y  - U_X \\
+    \dot{Y}_t &= \frac{\delta U_Y - U_X + U_{XX} (G - Y_t)}{- U_{YY}}
+\end{aligned}
+$$
+
+At steady state $G - Y_t = \dot{X}_t = 0$, so the third term in the numerator is zero. Since $\dot{Y}_t=0, U_X >0$, and $U_Y>0$, it must be true that $\delta U_Y = U_X$. 
+:::
+
+
+e) Does the optimal steady state level of $\mu$ and $X$ rise or fall with an increase in $\delta$?
+
+::: {.callout-tip collapse="true"}
+## Answer
+If $\delta$ increases, it must be that $U_Y$ decreases because $\delta U_Y = U_X$. Then $\mu$ also decreases because $U_Y = \mu$. This means that the value of harvest decreases so stock $X_t$ will increase. 
+:::
+
+
+## Frigid Sea 
+
+Suppose there are two fishing vessels that exploit the fish stock in the Frigid Sea (located somewhere near St. Paul). The objective of each fishing vessel is to maximize its profits from fishing. Suppose that the profit from fishing in period $t, t= 1, 2$, for vessel $$i$ is given by $\pi(h_{it}) = \alpha h_{it} - (\frac{b}{2}) h_{it}^2$, where $h_{it}$, is the harvest of vessel $i$ at time $t$. Total harvest in period $t$ is $H_t = \sum_{i=1}^N h_{it}$. The initial stock of fish starting in period 1 is $S_1$ . Fish that remain after harvest in time period 1, $S_1 - H_1$, grow according to the following function: $S_2 = (1 + \alpha)(S_1 - H_1)$. Assume that parameter values are such that you get an interior solution with positive harvests in all time periods. Let $\delta$ be the discount factor between periods.
+
+a) Suppose that the two fishing vessels divide the remaining fish equally in the final period (period 2). Write down the profit for vessel $i$ in period 2 as a function of period 2 stock $S_2$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+If there are $N$ vessels, then in period two, the remaining fish is split equally and each vessel's harvest is $h_{i2} = \frac{S_2}{N}$. So vessel $i$'s profit in period two:
+
+$$
+\begin{aligned}
+    \pi(h_{i2}) &= \alpha h_{i2} - (\frac{b}{2}) h_{i2}^2 \\
+    &= \alpha (\frac{S_2}{N}) - (\frac{b}{2}) (\frac{S_2}{N})^2
+\end{aligned}
+$$
+
+When $N=2$, $\pi(h_{i2}) =  \frac{\alpha}{2} S_2 - \frac{b}{8} S_2^2$ for $\forall i \in {1,2}.$
+
+:::
+
+
+b) Use the growth equation to rewrite period 2 profits as a function of period 1 remaining stock $S_2 = (1 + \alpha)(S_1 - H_1)$.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Substituting $S_2 = (1 + \alpha)(S_1 - H_1)$:
+$$
+\begin{aligned}
+    \pi(h_{i2}) &= \alpha (\frac{S_2}{N}) - (\frac{b}{2}) (\frac{S_2}{N})^2 \\
+    &= \frac{\alpha}{N} (1 + \alpha)(S_1 - H_1) - \frac{b}{2N^2} [(1 + \alpha)(S_1 - H_1)]^2
+\end{aligned}
+$$
+
+When $N=2$, $\frac{\alpha}{2} (1 + \alpha)(S_1 - H_1) - \frac{b}{8} [(1 + \alpha)(S_1 - H_1)]^2$ for $\forall i \in {1,2}.$
+:::
+
+c) Now write down the profit function for vessel $i$ starting in period 1 (which includes profit in period 1 and discounted profit from period 2).
+
+::: {.callout-tip collapse="true"}
+## Answer
+$$
+\begin{aligned}
+    \pi(H_i) &= \pi(h_{i1}) + \delta \pi(h_{i2}) \\
+    &= \alpha h_{i1} - \frac{b}{2} h_{i1}^2 + \delta \left[ \frac{\alpha}{N} (1 + \alpha)(S_1 - H_1) - \frac{b}{2N^2} [(1 + \alpha)(S_1 - H_1)]^2 \right]
+\end{aligned}
+$$
+
+When $N=2$, 
+
+$$
+\pi(H_i) = \alpha h_{i1} - \frac{b}{2} h_{i1}^2 + \delta \left[ \frac{\alpha}{2} (1 + \alpha)(S_1 - H_1) - \frac{b}{8} [(1 + \alpha)(S_1 - H_1)]^2 \right]
+$$ 
+
+for $\forall i \in {1,2}.$
+:::
+
+d) Solve for the equilibrium choice of first period harvest for each vessel.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Since $H_1 = h_{i1} + h_{-i1}$, the optimal first period harvest for each vessel:
+$$
+\begin{aligned}
+    \frac{\partial \pi(H_i)}{\partial h_{i1}} &= \alpha - b h_{i1} + (-1)\delta \frac{\alpha}{N} (1 + \alpha) - (-1) 2 \delta \frac{b}{N^2} (1+ \alpha) (S_1 + H_1) = 0
+\end{aligned}
+$$
+
+Summing over $N$ vessels: 
+
+$$
+\begin{aligned}
+    \sum_{i=1}^N \left[ \alpha - b h_{i1} + (-1)\delta \frac{\alpha}{N} (1 + \alpha) - (-1) 2 \delta \frac{b}{N^2} (1+ \alpha) (S_1 + H_1) \right] &= 0 \\
+    \alpha N - b H_{1} - \delta \frac{\alpha}{2} (1 + \alpha) + \delta \frac{b}{N} (1+ \alpha)^2 (S_1 + H_1) &= 0
+\end{aligned}
+$$
+
+Solving for $H_{1}$:
+
+$$
+H_1^* = \frac{\alpha N - \delta \alpha (1 + \alpha) + \delta \frac{b}{N} (1 + \alpha)^2 S_1}{b (1 + \delta \frac{1}{N} (1 + \alpha)^2) }
+$$
+
+Then each vessel's equilibrium harvest:
+
+$$
+h_{i1}^* = \frac{1}{N} H_1^* = \frac{\alpha - \delta \frac{\alpha}{N} (1 + \alpha) + \delta \frac{b}{N^2} (1 + \alpha)^2 S_1}{b (1 + \delta \frac{1}{N} (1 + \alpha)^2) }
+$$
+
+In this case, $N=2$:
+
+$$
+h_{i1}^* = \frac{\alpha - \delta \frac{\alpha}{2} (1 + \alpha) + \delta \frac{b}{4} (1 + \alpha)^2 S_1}{b (1 + \delta \frac{1}{N^2} (1 + \alpha)^2) }
+$$
+
+:::
+
+e) Now suppose there are $N$ fishing vessels. Follow the same procedure as in steps (a)- (d) to solve for equilibrium with $N$ fishing vessels. How does this choice vary with $N$? At what point would $N$ be large enough to cause extinction of the fish at the end of period 1?
+
+::: {.callout-tip collapse="true"}
+## Answer
+From (d), in the case of $N$ vessels,
+
+$$
+\begin{aligned}
+    h_{i1}^* = \frac{\alpha - \delta \frac{\alpha}{N} (1 + \alpha) + \delta \frac{b}{N^2} (1 + \alpha)^2 S_1}{b (1 + \delta \frac{1}{N} (1 + \alpha)^2) }
+\end{aligned}
+$$
+
+As $N \rightarrow \infty$, $h_{i1}^* \rightarrow \frac{\alpha}{b}$. This is the single period profit maximization, so as $N$ increases, the vessels stop caring about the stock in the second period. 
+
+To find the extinction level of stock, we can set the total harvest in period 1 equal to the stock in period 1:
+
+$$
+\begin{aligned}
+    S_1 &= H_1^* \\
+    S_1 &= \frac{\alpha N - \delta \alpha (1 + \alpha) + \delta \frac{b}{N} (1 + \alpha)^2 S_1}{b (1 + \delta \frac{1}{N} (1 + \alpha)^2) } \\
+    N &= \delta (1+ \alpha) + \frac{b}{\alpha} S_1
+\end{aligned}
+$$
+
+:::

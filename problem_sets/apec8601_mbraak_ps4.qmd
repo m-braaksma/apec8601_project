@@ -1,0 +1,194 @@
+---
+title: "APEC 8601: Natural Resource Economics"
+subtitle: "Problem Set 4"
+author: 'Matt Braaksma'
+toc: true
+format: 
+    html:
+        theme: sandstone
+        html-math-method: katex
+        embed-resources: true
+        code-fold: true
+    pdf:  
+        documentclass: article
+        papersize: letter
+number-sections: true
+---
+
+# InVEST Model: Scenic Quality {.unnumbered}
+
+# Description
+
+Scenic quality plays an important role in many communities by attracting tourism, increasing property values, and generally providing utility. The InVEST Scenic Quality model focuses on coastal areas to generate viewsheds, which show how offshore development may impact visibility. The beauty of the natural landscape is important to both residents and visitors to certain areas. This model helps to predict how development might impact this visual amenity. 
+
+# Calculations
+
+The model calculates the visibility of each structure point based on the Wang et al reference-plane viewshed algorithm and creates a 0/1 raster. Next, the visibility rasters are weighted and summed to generate a weighted sum of the number of all visible points. It also provides a raster composed of quartiles representing visual quality. If the optional valuation function and parameters are provided, the model can determine the visibility utility or disutility and create a weighted aggregate raster. 
+
+# Data Requirements
+
+- Area of Interest (vector)
+    - Polygon of area over which to aggregate
+- Features Impacting Scenic Quality (vector)
+    - Locations of objects that negatively impact scenic quality
+    - Optional fields include:
+        - radius (meters): maximum line of sight from a structure
+        - weight (default=1): viewshed importance coefficient
+        - height (meters): viewpoint elevation
+- Digital Elevation Map (raster)
+- Refractivity Coefficient (ratio)
+    - Correct for curvature of the earth and refraction of visible light in the air
+    - Default value is 0.13
+
+
+# Output
+
+Results using sample InVEST data. 
+
+```{python}
+#| echo: false
+import matplotlib.pyplot as plt
+from matplotlib.ticker import StrMethodFormatter
+import pygeoprocessing as pygeo
+from osgeo import gdal
+import numpy as np
+import os
+
+# Define paths
+scenic_dir = '/Users/mbraaksma/Files/base_data/invest_sample_data/ScenicQuality'
+vshed_path = 'output/vshed.tif'
+vshed_raster = os.path.join(scenic_dir, vshed_path)
+
+# Import data
+visibility_array = pygeo.raster_to_numpy_array(vshed_raster)
+
+# Plot
+plt.imshow(np.where(visibility_array==-1, 0, visibility_array))
+plt.title('Viewshed for Sample Data (Claybark)')
+cbar = plt.colorbar(orientation='vertical')
+cbar.set_label('Total Structure Points Visible')
+plt.axis('off')
+
+plt.show()
+```
+
+
+# Sensitivity Analysis
+
+The sample data uses the default height of zero. The following plot shows how the total number of structure points visible across the AOI differs by the height of the structures (uniformly across the points). 
+
+```{python}
+#| echo: false
+visibility_list = []
+scenario_list = [1, 5, 10, 25, 50, 75, 100, 150, 200, 300]
+for scenario in scenario_list:
+
+    # Define paths
+    vshed_path = 'output/vshed.tif'
+    scenario_path = f'output_scenario_height{scenario}/output/vshed.tif'
+    vshed_raster = os.path.join(scenic_dir, scenario_path)
+
+    # Import as array
+    visibility_array = pygeo.raster_to_numpy_array(vshed_raster)
+
+    # Remove missing values (-1) and sum
+    total_structure_visibility = np.where(visibility_array==-1, 0,visibility_array).sum() 
+    visibility_list.append(total_structure_visibility)
+
+# Plotting
+plt.plot(scenario_list, visibility_list, marker='o', linestyle='-')
+
+# Adding labels and title
+plt.xlabel('Height of Structure (m)')
+plt.ylabel('Total Structure Points Visible')
+plt.title('Scenic Quality for Height Scenarios')
+
+# Change y-axis tick label format
+plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}')) 
+
+# Display plot
+plt.show()
+```
+
+
+# Code Appendix {-}
+
+```{python}
+#| echo: true
+#| eval: false
+# Model: Scenic Quality
+
+import logging
+import sys
+import geopandas as gpd
+import os
+import pygeoprocessing as pygeo
+import numpy as np
+
+import natcap.invest.scenic_quality.scenic_quality
+import natcap.invest.utils
+
+LOGGER = logging.getLogger(__name__)
+root_logger = logging.getLogger()
+
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter(
+    fmt=natcap.invest.utils.LOG_FMT,
+    datefmt='%m/%d/%Y %H:%M:%S ')
+handler.setFormatter(formatter)
+logging.basicConfig(level=logging.INFO, handlers=[handler])
+
+args = {
+    'a_coef': '',
+    'aoi_path': '/Users/mbraaksma/Files/base_data/invest_sample_data/ScenicQuality/Input/AOI_WCVI.shp',
+    'b_coef': '',
+    'dem_path': '/Users/mbraaksma/Files/base_data/invest_sample_data/ScenicQuality/Input/claybark_dem.tif',
+    'do_valuation': False,
+    'max_valuation_radius': '',
+    'n_workers': '-1',
+    'refraction': '0.13',
+    'results_suffix': '',
+    'structure_path': '/Users/mbraaksma/Files/base_data/invest_sample_data/ScenicQuality/Input/AquaWEM_points.shp',
+    'valuation_function': 'linear',
+    'workspace_dir': '/Users/mbraaksma/Files/base_data/invest_sample_data/ScenicQuality/Output',
+}
+
+
+# Create 5 different versions of the AquaWEM_points shapefile
+# Add varying height variable
+scenario_list = [1, 5, 10, 25, 50, 75, 100, 150, 200, 300]
+os.chdir(os.path.dirname(__file__))
+for scenario in scenario_list:
+    # Read in shapefile
+    gdf = gpd.read_file('Input/AquaWEM_points.shp')
+    # Generate height variable
+    gdf['height'] = scenario
+    # Export the modified GeoDataFrame to a GPKG shapefile
+    gdf.to_file(f'Input/AquaWEM_points_height{scenario}.gpkg', driver='GPKG')
+
+
+if __name__ == '__main__':
+
+    # Run scenarios
+    for scenario in scenario_list:
+        args['structure_path'] = f'Input/AquaWEM_points_height{scenario}.gpkg'
+
+        # Create output directory if it doesn't exist
+        output_dir = f'output_scenario_height{scenario}'
+        os.makedirs(output_dir, exist_ok=True)
+
+        args['workspace_dir']= output_dir
+        print(args)
+        natcap.invest.scenic_quality.scenic_quality.execute(args)
+
+    # Calculate and print total visibility
+    for scenario in scenario_list:
+        output_dir = f'output_scenario_height{scenario}/output'
+        raster_path = output_dir + '/vshed.tif'
+        # Import as array
+        visibility_array = pygeo.raster_to_numpy_array(raster_path)
+        # Remove missing values (-1) and sum
+        total_structure_visibility = np.where(visibility_array==-1, 0, visibility_array).sum() 
+        print('Total Structure Points Visible for HEIGHT=', scenario, ':', total_structure_visibility)
+
+```

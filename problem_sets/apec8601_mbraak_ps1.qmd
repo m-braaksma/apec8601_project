@@ -1,0 +1,667 @@
+---
+title: "APEC 8601: Natural Resource Economics"
+subtitle: "Problem Set 1"
+author: 'Matt Braaksma'
+toc: true
+format: 
+    html:
+        theme: sandstone
+        html-math-method: katex
+        embed-resources: true
+        code-fold: true
+    pdf:  
+        documentclass: article
+        papersize: letter
+---
+
+## 1 Conrad and Clark 2.10.2
+
+Compute the MSY and corresponding effort levels for the following two examples, using the Schaefer model. Also find the level of effort just sufficient to drive the populations to extinction.
+
+
+a) Antarctic baleen whales: $r = .05$ per year, $K = 400,000$ BWU (bluewhale units), $q = 1.6 \times 10^3$ per whale-catcher year.
+
+::: {.callout-tip collapse="true"}
+## Answer
+For the logistic growth function, $F'(X)=0$ at: 
+$$
+Y_{MSY}=\frac{rK}{4}=(0.05)(400000)/4= 5000 \text{ BWU/yr}
+$$
+
+Then substitute $Y_{MSY}=\frac{rK}{4}, X_{MSY}=\frac{K}{2}$ into the the sustained-yield function for the Schaefer model:
+$$
+\begin{aligned}
+    Y_{MSY} &= qEX_{MSY} \\
+    \frac{rK}{4} &= qE\frac{K}{2} \\
+    E &= \frac{r}{2q} \\
+    E &= \frac{(0.05)}{2(0.0016)} \\
+    E_{MSY} &= 15.625
+\end{aligned}
+$$
+
+If the relative rate of harvest $qE$ exceeds the intrinsic growth rate of the population $r$, then the population will be driven to extinction.
+$$
+E_{ext} = \frac{r}{q} = \frac{0.05}{0.0016} = 31.25
+$$
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pylab as plt
+import seaborn as sbn
+from scipy.optimize import fmin
+```
+
+```{python}
+r = .05
+K = 400000
+q = 0.0016
+
+# generate all possible values of stocks
+S=np.arange(1,K + 1).reshape((K,1))
+
+# find growth for each stock size
+dSdt = r * S * ( 1- S / K)
+effort_ss = (r * S * (1 - S/K))/(q * S)
+y_msy = r*K/4
+e_msy = (r)/(2*q)
+e_ext = (r)/(q)
+
+# plot harvest as a function of stocks
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+lw = 1
+plt.plot(effort_ss,dSdt,lw=lw, c="#348ABD")
+plt.plot((0, e_msy), (y_msy, y_msy), 'k--')
+plt.plot((e_msy, e_msy), (0, y_msy), 'k--')
+plt.annotate('($E_{MSY}$= %1.3f,$Y_{MSY}$= %i)' %(e_msy, y_msy), xy=(e_msy+.25, 5100), xytext=(e_msy+1, 5500),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.annotate('$E_{ext}$= %1.3f' %e_ext, xy=(e_ext+.25, 100), xytext=(e_ext+1, 500),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.xlabel("Effort")
+plt.ylabel("Harvest")
+plt.title("The Sustainable Harvest Curve")
+plt.xlim(0,35)
+plt.ylim(0,6000)
+sbn.despine()
+plt.grid()
+```
+
+:::
+
+
+
+
+
+
+b) Pacific yellowfin tuna: $r = 2.6$ per year, $K = 250,000$ metric tons,
+$q = 3.8 \times 10^5$ per standard fishing day (SFD).
+
+::: {.callout-tip collapse="true"}
+## Answer
+For the logistic growth function, $F'(X)=0$ at: 
+$$
+Y_{MSY}=\frac{rK}{4}=(2.6)(250000)/4= 162500 \text{ BWU/yr}
+$$
+
+From part (a) we know,
+$$
+E_{MSY} = \frac{r}{2q} = \frac{2.6}{2(0.000038))} = 34210.526
+$$
+
+If the relative rate of harvest $qE$ exceeds the intrinsic growth rate of the population $r$, then the population will be driven to extinction.
+$$
+E_{ext} = \frac{r}{q} = \frac{2.6}{0.000038} = 68421.053
+$$
+
+```{python}
+r = 2.6
+K = 250000
+q = 0.000038
+
+# generate all possible values of stocks
+S=np.arange(1,K + 1).reshape((K,1))
+
+# find growth for each stock size
+dSdt = r * S * ( 1- S / K)
+effort_ss = (r * S * (1 - S/K))/(q * S)
+y_msy = r*K/4
+e_msy = (r)/(2*q)
+e_ext = (r)/(q)
+
+# plot harvest as a function of stocks
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+lw = 1
+plt.plot(effort_ss,dSdt,lw=lw, c="#348ABD")
+plt.plot((0, e_msy), (y_msy, y_msy), 'k--')
+plt.plot((e_msy, e_msy), (0, y_msy), 'k--')
+plt.annotate('($E_{MSY}$= %1.3f,$Y_{MSY}$= %i)' %(e_msy, y_msy), xy=(e_msy+800, 166000), xytext=(e_msy+4000, 170000),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.annotate('$E_{ext}$= %1.3f' %e_ext, xy=(e_ext+500, 1000), xytext=(e_ext+4000, 10000),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.xlabel("Effort")
+plt.ylabel("Harvest")
+plt.title("The Sustainable Harvest Curve")
+plt.xlim(0,70000)
+plt.ylim(0,180000)
+sbn.despine()
+plt.grid()
+```
+:::
+
+
+## 2 Conrad and Clark 2.10.3
+Continuing with Problem 2.10.2, compute the optimal stock levels $X^*$, optimal sustained biological yields $Y^*$, optimal effort levels $E^*$, optimal sustained economic rents $R^* = pY^* - cE^*$ , and optimal initial economic yields $Y_0$ assuming that $X(0)=K$ (and that maximum effort is unconstrained). Use the values $\delta = 0$ and $\delta = 0.1$ % per year. Explain your results.
+
+
+a) whales: $p= 7,000$ per BWU, $c = 600,000$ per whale-catcher year. 
+
+::: {.callout-tip collapse="true"}
+## Answer
+The profit function is $\pi = p Y_t - c E_t$. Since $Y_t = q E_t X_t$, the profit function can be rewritten as $\pi = p Y_t - \frac{cY_t}{q X_t}$. Then the optimal harvesting problem is:
+$$
+\begin{aligned}
+    max& \int_0^\infty (p Y_t - \frac{cY_t}{q X_t}) e^{-\delta t} dt \\
+    & \text{subject to} \\
+    & \dot{X}_t = r X_t (1 - \frac{X_t}{K}) - Y_t
+\end{aligned}
+$$
+
+The current value Hamiltonian is:
+$$
+\tilde{H} = p Y_t - \frac{cY_t}{q X_t} + \mu_t [r X_t (1 - \frac{X_t}{K}) - Y_t]
+$$
+
+Necessary conditions for an optimal solution:
+$$
+\begin{aligned}
+    \frac{\partial \tilde{H}}{\partial y} &= 0 	\\
+    &\Longrightarrow p - \frac{c}{qX_t} - \mu_t = 0 \\
+    \frac{\partial \tilde{H}}{\partial X} &= - \dot{\mu}_t + \delta \mu_t	\\
+    & \Longrightarrow \frac{cY_t}{q X_t^2} + \mu_t (1 - \frac{X_t}{K}) = - \dot{\mu}_t + \delta \mu_t \\
+    & \qquad \dot{\mu}_t = \mu_t (\delta - G'(X_t)) - U_X \\
+    \frac{\partial \tilde{H}}{\partial \mu} &= \dot{X}_t \\
+    &\Longrightarrow r X_t (1 - \frac{X_t}{K}) - Y_t = \dot{X}_t
+\end{aligned}
+$$
+
+If $X^*, Y^*, \mu^*$ are the optimal steady state values, we can solve for $X^*$ (knowing $\dot{\mu}_t=0, \dot{X}_t=0$):
+
+$$
+X^* = \frac{1}{4} \left( \frac{c}{pq} + K(1 - \frac{\delta}{r}) + \sqrt{(\frac{c}{pq} + K(1-\frac{\delta}{r}))^2 + 8 K \frac{c}{pq}\frac{\delta}{r}} \right)
+$$
+
+Substitute this back into the third condition and the harvest equation:
+$$
+\begin{aligned}
+    Y^* &= rX^* (1-\frac{X^*}{K}) \\
+    E^* &= \frac{Y*}{qX^*}
+\end{aligned}
+$$
+
+When $\delta=0$:
+
+```{python}
+def print_optimal(r, K, q, p, c, delta):
+    X_star = 1/4*(c/(p*q) + K*(1-delta/r) + np.sqrt((c/(p*q)+K*(1-delta/r))**2 + 8*K*c/(p*q)*delta/r))
+    Y_star = r * X_star * (1 - X_star / K)
+    E_star = Y_star / (q * X_star)
+    R_star = p * Y_star - c * E_star
+    Y_0 = p * (K - X_star) - (c / q) * np.log( K / X_star)
+
+    print("Optimal Stock Levels (X*): ", X_star.round(2))
+    print("Optimal Sustained Biological Yields  (Y*): ", Y_star.round(2))
+    print("Optimal Effort Levels (E*): ", E_star.round(2))
+    print("Optimal Sustained Economic Rents (R*): ", R_star.round(2))
+    print("Optimal Initial Economic Yields (Y_0): ", Y_0.round(2))
+
+
+r = .05
+K = 400000
+q = 1.6*(10)**(-3)
+p=7000
+c = 600000
+delta=0
+print_optimal(r, K, q, p, c, delta)
+```
+
+When $\delta=0.1$:
+```{python}
+r = .05
+K = 400000
+q = 1.6*(10)**(-3)
+p=7000
+c = 600000
+delta=0.1
+print_optimal(r, K, q, p, c, delta)
+```
+:::
+
+b) tuna: $p = 600$ per metric ton, $c = 2,500$ per SFD.
+
+::: {.callout-tip collapse="true"}
+## Answer
+We can substitute the given tuna values into the equations solved above.
+
+When $\delta=0$:
+```{python}
+r = 2.6
+K = 250000
+q = 3.8*(10)**(-5)
+p=600
+c = 600000
+delta=0.0
+print_optimal(r, K, q, p, c, delta)
+```
+
+When $\delta=0.1$:
+```{python}
+r = 2.6
+K = 250000
+q = 3.8*(10)**(-5)
+p=600
+c = 2500
+delta=0.1
+print_optimal(r, K, q, p, c, delta)
+```
+:::
+
+
+## 3 Conrad and Clark 2.10.4
+Find the stock level $X_\infty$, effort level $E_\infty$, and sustained yield $Y_\infty$ corresponding to bionomic equilibrium for the whale and tuna examples above. Explain why $Y_\infty > Y^*$ ($\delta = 0$ or 0.1) for the case of tuna.
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+At the binomic equilibrium, 
+
+$$
+\begin{aligned}
+    TR &= TC \\
+    pY &= cE \\
+    p(qEX) &= cE \\
+    X_{\infty} &= \frac{c}{pq}
+\end{aligned}
+$$
+
+Since $\dot{X}=0$, 
+$$
+\begin{aligned}
+    F(X_{\infty}) - Y &= \dot{X} \\
+    F(X_{\infty}) - Y &= 0 \\
+    Y &= Y_{\infty} = F(X_{\infty}) \\
+    E_{\infty} &= \frac{Y_{\infty}}{q X_{\infty}}
+\end{aligned}
+$$
+
+Then,
+$$
+\begin{aligned}
+    E_{\infty} &= \frac{Y_{\infty}}{q X_{\infty}}
+\end{aligned}
+$$
+
+
+When $\delta=0$, the results for whales:
+```{python}
+def print_infty(r, K, q, p, c, delta):
+    X_infty = c / (p*q)
+    Y_infty = r * X_infty * (1 - (X_infty / K))
+    E_infty = Y_infty / (q * X_infty)
+
+    print("Bionomic Stock Levels (X_infty): ", X_infty)
+    print("Bionomic Sustained Biological Yields (Y_infty):", Y_infty)
+    print("Bionomic Effort Levels (E_infty): ", E_infty)
+
+r = .05
+K = 400000
+q = 1.6*(10)**(-3)
+p=7000
+c = 600000
+delta=0
+print_infty(r, K, q, p, c, delta)
+```
+
+When $\delta=0$, the results for tuna:
+```{python}
+r = 2.6
+K = 250000
+q = 3.8*(10)**(-5)
+p=600
+c = 2500
+delta=0
+print_infty(r, K, q, p, c, delta)
+```
+
+The 10% discount factor has a much stronger impact on the whale results compared to the tuna results due to the large difference in $r$. THe lower growth rate for whales means that the discounted results are much lower. 
+:::
+
+
+## 4 Suckerville Fishery
+The people of Suckerville harvest the long-nosed sucker fish from Big Sucker Lake.  Suckerville residents get utility both from harvesting fish and from the stock of fish in the lake, represented by a utility function $U(h_t, X_t)$, where $h_t$ is fish harvest at time $t$ and $X_t$ is fish stock at time $t$. Assume that $U_h > 0, U_{hh} < 0, U_X > 0, U_{XX} < 0, U_{hX} = 0$, where these expressions represent the first and second derivatives of the utility function with respect to $h$ or $X$. The long-nosed sucker fish has a biological growth function given by $G(X_t)$, with $G(0) = G(K) = 0$, where $K$ is natural carrying capacity, $G(X_t) > 0$ and $G"(X_t) < 0$ for $X_t \in(0, K), G'(X_t) > 0$, for $X_t \in [0, X_{msy}), G'(X_t)  < 0$ for $X_t \in (X_{msy}, K)$,  where $X_{msy}$ is the maximum sustainable yield stock level. The change in the fish population is given by $X_t=G(X_t)-h_t$.  The initial stock of the fish is $X_0 > 0$. The people of Suckerville have a discount rate applied to utility of $\delta > 0$. 
+
+a) Write down the dynamic optimization problem where the goal is to maximize the present value of utility from harvest over an infinite time horizon. Please include relevant constraints in the statement of the problem.
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+Optimal harvesting problem:
+$$
+\begin{aligned}
+    V(S_0) &= max \int_{0}^{\infty} U(h_t,X_t) e^{-\delta t} dt \\
+    & \text{subject to} \\
+    & \dot{X}_t = G(X_t) - h_t \\
+    & h_t \ge 0; X_t \ge 0; X_0 \ge 0
+\end{aligned}
+$$
+:::
+
+b) Write down the current value Hamiltonian and derive the necessary conditions for an optimal path.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Current value Hamiltonian:
+$$
+\tilde{H} = U(h_t, X_t) + \mu_t (G(X_t) - h_t)
+$$
+
+Necessary conditions for an optimal solution:
+$$
+\begin{aligned}
+    \frac{\partial \tilde{H}}{\partial h} &= 0 	\\
+    &\Longrightarrow U_h - \mu_t = 0 \\
+    \frac{\partial \tilde{H}}{\partial S} &= - \dot{\mu}_t + \delta \mu_t	\\
+    & \Longrightarrow U_X + \mu_t G'(X_t)= - \dot{\mu}_t + \delta \mu_t \\
+    & \qquad \dot{\mu}_t = \mu_t (\delta - G'(X_t)) - U_X \\
+    \frac{\partial \tilde{H}}{\partial \mu} &= \dot{X}_t \\
+    &\Longrightarrow G(X_t) - h_t = \dot{X}_t
+\end{aligned}
+$$
+:::
+
+c) Solve for conditions that define an optimal steady state.
+
+::: {.callout-tip collapse="true"}
+## Answer
+Differentiate the first condition with respect to $t$ and substitute out $\dot{X}_t, \dot{\mu}_t, \mu_t$:
+$$
+\begin{aligned}
+    U_{hh} \dot{h}_t - U_{hX} \dot{X}_t &= \dot{\mu}_t \\
+    U_{hh} \dot{h}_t - U_{hX} \dot{X}_t &= \mu_t (\delta - G'(X_t)) - U_X \\
+    U_{hh} \dot{h}_t - U_{hX} (G(X_t) - h_t) &= \mu_t (\delta - G'(X_t)) - U_X \\
+    U_{hh} \dot{h}_t - U_{hX} (G(X_t) - h_t) &= U_h (\delta - G'(X_t)) - U_X \\
+    \dot{h} &= \frac{U_h(G'(X_t) - \delta) + U_X + U_{hS}(G(X_t) - h_t)}{- U_{hh}}
+\end{aligned}
+$$
+
+At steady state $G(X_t)- h_t = \dot{X}_t = 0$, so the third term in the numerator is zero. Since $U_X >0$, it must be true that $G'(X_t) - \delta < 0$ so that $\dot{h}_t=0$ since $U_h>0$. 
+:::
+
+d) How does the stock level in the optimal steady state compare to stock level that satisfies the golden rule of growth? Is it greater than, equal, less than, or ambiguous? 
+
+::: {.callout-tip collapse="true"}
+## Answer
+When the stock level satisfies the golden rule of growth then the growth rate equals the discount rate: $G'(X_t)=\delta$. Since the steady state requires that $G'(X_t) < \delta$, it must be the case that the stock level in the optimal steady is greater than the stock level that satisfies the golden rule: $X_t^{ss} > X_t^{gr}$.
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pylab as plt
+import seaborn as sbn
+from scipy.optimize import fmin
+
+r = .05
+K = 400000
+q = 0.0016
+
+# generate all possible values of stocks
+# in increments of 1
+S=np.arange(1,K + 1).reshape((K,1))
+
+# find growth for each stock size
+dSdt = r * S * ( 1- S / K)
+effort_ss = (r * S * (1 - S/K))/(q * S)
+y_msy = r*K/4
+e_msy = (r)/(2*q)
+
+# plot harvest as a function of stocks
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+lw = 1
+plt.plot(effort_ss,dSdt,lw=lw, c="#348ABD")
+plt.plot((0, e_msy), (0+1250, y_msy+1250), 'k--')
+plt.plot((7.9, 7.9), (0, 3750), 'k--')
+plt.annotate("$G'(X_t) = \delta$", xy=(7.9, 3750), 
+            xytext=(10, 3400),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.text(4, -700, "$G'(X_t) > \delta$",
+            ha="center", va="center", rotation=0, size=15,
+            bbox=dict(boxstyle="darrow,pad=0.3",
+            fc="lightblue", ec="white", lw=2))
+plt.text(17, -700, "$G'(X_t) < \delta$",
+            ha="center", va="center", rotation=0, size=15,
+            bbox=dict(boxstyle="darrow,pad=0.3",
+            fc="lightblue", ec="white", lw=2))
+plt.xlabel("Stock")
+plt.ylabel("Harvest")
+plt.title("The Sustainable Harvest Curve")
+plt.xlim(0,35)
+plt.ylim(0,6000)
+plt.xticks([], [])
+plt.yticks([], [])
+sbn.despine()
+plt.grid()
+```
+:::
+
+e) How does the stock level in the optimal steady state compare to the maximum sustained yield stock level? Is it greater than, equal, less than, or ambiguous?
+
+::: {.callout-tip collapse="true"}
+## Answer
+At the maximum sustained yield, the growth rate is equal to zero: $G'(X_t)=0$. This means that it is ambiguous compared to the optimal steady state stock level. The optimal steady state require only that $G'(X_t) < \delta$, but this could occur to either side of the maximum sustained yield point.
+
+```{python}
+#| echo: false
+r = .05
+K = 400000
+q = 0.0016
+
+# generate all possible values of stocks
+# in increments of 1
+S=np.arange(1,K + 1).reshape((K,1))
+
+# find growth for each stock size
+dSdt = r * S * ( 1- S / K)
+effort_ss = (r * S * (1 - S/K))/(q * S)
+y_msy = r*K/4
+e_msy = (r)/(2*q)
+
+# plot harvest as a function of stocks
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+lw = 1
+plt.plot(effort_ss,dSdt,lw=lw, c="#348ABD")
+plt.plot((e_msy, e_msy), (0, y_msy), 'k--')
+plt.plot((7.9, 7.9), (0, 3750), 'k--')
+plt.annotate("$G'(X_t) = \delta$", xy=(7.9, 3750), 
+            xytext=(10, 3400),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.annotate('($E_{MSY}$= %1.3f,$Y_{MSY}$= %i)' %(e_msy, y_msy),
+            xy=(e_msy+.2, y_msy+50), xytext=(e_msy+2.5, y_msy+500),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.text(4, -700, "$G'(X_t) > \delta$",
+            ha="center", va="center", rotation=0, size=15,
+            bbox=dict(boxstyle="darrow,pad=0.3",
+            fc="lightblue", ec="white", lw=2))
+plt.text(17, -700, "$G'(X_t) < \delta$",
+            ha="center", va="center", rotation=0, size=15,
+            bbox=dict(boxstyle="darrow,pad=0.3",
+            fc="lightblue", ec="white", lw=2))
+plt.xlabel("Stock")
+plt.ylabel("Harvest")
+plt.title("The Sustainable Harvest Curve")
+plt.xlim(0,35)
+plt.ylim(0,6000)
+plt.xticks([], [])
+plt.yticks([], [])
+sbn.despine()
+plt.grid()
+```
+:::
+
+f) Clark (1973) showed that it may be optimal to harvest stock to extinction. Write down conditions that would give rise to optimal extinction and explain the economic logic for your result. 
+
+::: {.callout-tip collapse="true"}
+## Answer
+Since $U_h >0$, there are positive returns from harvest. Then we can consider the case where $G'(0)< \delta$. Then $G'(X_t) < \delta$ and $\dot{h}_t<0$ for all $X_t>0$. The only steady state that exists is extinction where $h_t=X_t=0$. The intuition behind this is that the discount rate is so much higher than the growth rate that it is optimal to harvest all the stock and invest that capital elsewhere.
+
+```{python}
+#| echo: false
+r = .05
+K = 400000
+q = 0.0016
+
+# generate all possible values of stocks
+# in increments of 1
+S=np.arange(1,K + 1).reshape((K,1))
+
+# find growth for each stock size
+dSdt = r * S * ( 1- S / K)
+effort_ss = (r * S * (1 - S/K))/(q * S)
+y_msy = r*K/4
+e_msy = (r)/(2*q)
+
+# plot harvest as a function of stocks
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+lw = 1
+plt.plot(effort_ss,dSdt,lw=lw, c="#348ABD")
+plt.plot((0, e_msy), (0, 15000), 'k--')
+plt.annotate("$\delta$", xy=(5.5, 4800), 
+            xytext=(8, 5100),
+            arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+plt.text(10, -700, "$G'(X_t) < \delta$",
+            ha="center", va="center", rotation=0, size=15,
+            bbox=dict(boxstyle="darrow,pad=0.3",
+            fc="lightblue", ec="white", lw=2))
+plt.xlabel("Stock")
+plt.ylabel("Harvest")
+plt.title("The Sustainable Harvest Curve")
+plt.xlim(0,35)
+plt.ylim(0,6000)
+plt.xticks([], [])
+plt.yticks([], [])
+sbn.despine()
+plt.grid()
+```
+:::
+
+
+
+
+<!-- Testing code -->
+```{python}
+#| echo: false
+#| output: false
+
+import numpy as np
+import matplotlib.pylab as plt
+import seaborn as sbn
+from scipy.optimize import fmin
+
+
+r = .05
+K = 400000
+
+alpha = 0.0016
+
+p=7000
+c = 600000
+
+# generate all possible values of stocks
+# in increments of 1
+S=np.arange(1,K + 1).reshape((K,1))
+
+# find growth for each stock size
+dSdt = r * S * ( 1- S / K)
+
+
+# y_msy = r*K/4
+# e_msy = (r)/(2*q)
+# e_ext = (r)/(q)
+
+effort_ss = (r * S * (1 - S/K))/(alpha * S)
+
+# for each effort level, calculate
+# 1. Sustainable TR = p H
+# 2. TC
+
+TR_ss = dSdt * p
+TC = effort_ss * c
+
+print(effort_ss)
+
+# negative profit function
+negative_profits = lambda s : -1*((p*alpha*s - c) * (r*s*(1-(s/K)))/(alpha*s))
+
+S_initial_guess = 3000
+S_star = fmin(negative_profits, S_initial_guess)
+print("Profit Maximizing Steady State Stocks (S*): ", S_star[0].round(2))
+Y_star = r*S_star*(1-(S_star/K))
+print("Profit Maximizing Steady State Harvest (H*): ", Y_star[0].round(2))
+E_star = r*S_star*(1-(S_star/K))/(alpha*S_star)
+print("Profit Maximizing Effort (E*) is", E_star[0].round(2))
+revs_star = p*alpha*S_star*E_star
+print("Total Revenues at E* is", revs_star[0].round(2))
+cost_star = c*E_star
+print("Total Costs at E* is",cost_star[0].round(2))
+profits_star = revs_star - cost_star
+print("Profits at E* is ", profits_star[0].round(2))
+```
+
+```{python}
+#| echo: false
+#| output: false
+negative_stock_growth = lambda s : -1*(r*s*(1-(s/K)))
+
+S_initial_guess = 1750
+S_msy = fmin(negative_stock_growth, S_initial_guess)
+print("Maximum Sustainable Yield Stock Size is: ", S_msy[0].round(2))
+E_msy = r*S_msy*(1-(S_msy/K))/(alpha*S_msy)
+print("Effort at MSY (E_MSY) is", E_msy[0].round(2))
+revs_msy = p*alpha*S_msy*E_msy
+print("Total Revenues at $E_MSY$ is", revs_msy[0].round(2))
+cost_msy = c*E_msy
+print("Total Costs at E_MSY$ is",cost_msy[0].round(2))
+profits_msy = revs_msy - cost_msy
+print("Profits at E_MSY is", profits_msy[0].round(2))
+```
+
+```{python}
+#| echo: false
+#| output: false
+# plot TC and TR as a function of effort
+plt.figure(figsize=(10, 6))
+plt.subplot(111)
+plt.plot(effort_ss,TR_ss, c="#348ABD")
+plt.plot(effort_ss,TC, c="r")
+plt.xlabel("Effort")
+plt.ylabel("TR,TC")
+plt.title("Sustainable TR and TC as a Function of Effort")
+
+plt.plot((E_star[0], E_star[0]), (0, revs_star[0]), 'k--')
+plt.plot((E_msy[0], E_msy[0]), (0, revs_msy[0]), 'k--')
+# plt.plot((e_msy, e_msy), (0, y_msy), 'k--')
+# plt.annotate('($E_{MSY}$= %1.3f,$Y_{MSY}$= %i)' %(e_msy, y_msy), xy=(e_msy+.25, 5100), xytext=(e_msy+1, 5500),
+#             arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+# plt.annotate('$E_{ext}$= %1.3f' %e_ext, xy=(e_ext+.25, 100), xytext=(e_ext+1, 500),
+#             arrowprops=dict(facecolor='black',width=.3,headwidth=5),fontsize=13)
+# plt.xlabel("Effort")
+# plt.ylabel("Harvest")
+# plt.title("The Sustainable Harvest Curve")
+plt.xlim(0,35)
+plt.ylim(0,0.4e8)
+sbn.despine()
+plt.grid()
+```
