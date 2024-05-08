@@ -65,7 +65,7 @@ if __name__ == '__main__':
                     unit='mm')
     generate_plot(model='nutrient_delivery', 
                     file_name='p_surface_export.tif', 
-                    unit='kg/year')
+                    unit='kg]')
     generate_plot(model='sediment_delivery', 
                     file_name='avoided_export.tif', 
                     unit='tons')
