@@ -1,6 +1,7 @@
 import os
 import pygeoprocessing as pygeo
 import matplotlib.pyplot as plt 
+import numpy as np
 
 
 def generate_plot(model, file_name, unit):
@@ -22,6 +23,10 @@ def generate_plot(model, file_name, unit):
             # CARBON
             raster_path = os.path.join(invest_output_path, model, f'{scenario}_{year}', file_name)
             raster_array = pygeo.raster_to_numpy_array(raster_path)
+
+            # Replace 0 values with numpy.nan
+            raster_array[raster_array <= 0] = np.nan
+            raster_array[raster_array > 1000000000] = np.nan
 
             # Plot the raster in the appropriate subplot
             im = axes[i, j].imshow(raster_array)
